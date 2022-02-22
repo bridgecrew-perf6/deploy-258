@@ -25,11 +25,11 @@ Pada tugas ini membuat 3 branch tambahan pada git. Dimana 1 branch digunakan unt
 
 berikut merupakan hasil dari praktikum pada section ini:
 
-![Git](/2_Version Control and Branch Managemant (Git)/screenshots/Screenshots.png)
+![Git](screenshots/Screenshots.png)
 
 ### 2. Miniproject(UIUX)
 Pada tugas ini membuat desain ui di figma.
 
 berikut merupakan hasil dari tugas saya:
 
-![Figma](/2_Version Control and Branch Managemant (Git)/screenshots/figma.png)
+![Figma](screenshots/figma.png)
