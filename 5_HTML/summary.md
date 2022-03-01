@@ -22,7 +22,7 @@ membuat website frontend membutuhkan 3 komponen utama, pertama html, sebagai str
 
 pada section ini mendapatkan tugas praktikum untuk membuat sebuah website html sederhana.
 berikut merupakan hasil dari tugas pada section ini.
-![HalamanUtama](.screenshots/halamanutama.png)
-![Form](.screenshots/form.png)
-![Welcome](.screenshots/welcome.png)
+![HalamanUtama](screenshots/halamanutama.png)
+![Form](screenshots/form.png)
+![Welcome](screenshots/welcome.png)
 
