@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+.navbar-brand{
+    font-family: 'Open Sans', sans-serif;
+}
+li a{
+    font-size: 0.7rem;
+}
+div a span{
+    color: grey !important;
+}
+.body{
+    margin-top: 75px;
+}
+.judul h1, .judul h6{
+    font-weight: lighter;
+    color: gray;
+}
+.row img{
+    width: 60px;
+}
+.row .middle{
+    text-align: center;
+    margin-top: 100px;
+}
+.row .col h6{
+    margin: 30px 0 20px 0;
+}
+.row .col p{
+    color: gray;
+    font-size: 13px;
+}
+.row .col a{
+    text-decoration: none;
+    color: green;
+}
+.row .col a:hover{
+    color: gray;
+}
+.row .image img{
+    width: 250px;
+}
+.texted li{
+    list-style-type: none;
+    font-family: 'Nonum Gothic', sans-serif;
+}
+.footer{
+    background-color: rgb(39, 37, 37);
+    color: white;
+}
+.footer a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    margin: 0;
+    padding-bottom: 3px;
+}
+.footer p{
+    font-size: 10px;
+}
+.footer h6{
+    font-size: 14px;
+}
+.aboutus1, .aboutus2, .aboutus3{
+    padding: 0px;
+}
+.copy p{
+    margin: 0;
+    font-size: 12px;
+
+}
+.copy a{
+    text-decoration: none;
+    color: green;
+}
+.copy a:hover, .footer a:hover{
+    color: gray;
+}
