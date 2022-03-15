@@ -14,5 +14,5 @@ digunakan untuk menambah fungsi - fungsi yang akan di gunakan pada website
 
 ## Task
 pada section ini tugas praktikum yaitu membuat halaman website responsive dengan ketentuan yang sudah di berikan. Berikut merupakan hasil dari pekerjaan saya.
+[LinkGithub](https://github.com/rizkiagus/10_FrontendFundamental/tree/latihan-materi-1)
 ![Responsive](screenshots/ss.png)
-[FrontendFundamental](https://github.com/rizkiagus/10_FrontendFundamental/tree/latihan-materi-1)
