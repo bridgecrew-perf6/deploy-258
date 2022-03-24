@@ -41,11 +41,14 @@ console.log(x, y, z)
 //jawaban no 4
 console.log("jawaban no 4")
 let bdays = ['10-17', '05-19', '20-19']
-var bday = []
-bdays.forEach(element => {
-    i = element.slice(0,2) + '/' + element.slice(3,5)
-    bday.push(i)
-});
+// var bday = []
+// bdays.forEach(element => {
+//     i = element.slice(0,2) + '/' + element.slice(3,5)
+//     bday.push(i)
+// });
+let bday = bdays.map(function(element){
+    return element.slice(0,2) + '/' + element.slice(3,5)
+})
 console.log(bday)
 
 //jawaban no 5
@@ -56,7 +59,8 @@ console.log(value.map(x => x * 2))
 //jawaban no 6
 console.log("jawaban no 6")
 let arr = [1.5, 2.56, 5.1, 12.33]
-var data = arr.map(function(i){
+let data = arr.map(
+    function(i){
         return Math.round(i)
 })
 console.log(data)
