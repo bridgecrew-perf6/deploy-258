@@ -16,4 +16,4 @@ Pada section ini mempelajari mengenai komponen yang ada pada vue, seperti props,
 ## Task
 
 Pada section ini tugas yang diberikan merupakan lanjutan dari tugas section kemaren, dimana todolist disini dapat di update, dan di hapus. Berikut merupakan hasil dari pekerjaan saya
-![TodoList](/screenshots)
+![TodoList](screenshots/ss.png)
