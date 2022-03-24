@@ -13,7 +13,7 @@
       </div>
       <div v-else-if="isEditing">
         <li v-for="(todo, index) in todoList" :key="index">
-          <span class="msg" v-if="(index = index)">
+          <span class="msg" v-if="isEditing && index">
             {{ todo }}
           </span>
           <input class="edit" type="text" v-model="editText" v-else />
