@@ -4,19 +4,23 @@
     <ol>
       <div v-if="!isEditing">
         <li v-for="(todo, index) in todoList" :key="index">
-          <span class="msg">
-            {{ todo }}
-          </span>
+          <router-link class="msg" to="/deskripsi">
+            <span>
+              {{ todo }}
+            </span>
+          </router-link>
           <Button class="btn" @buttonAll="deleteList(index)">Hapus</Button>
           <Button class="btn" @buttonAll="editList(index, todo)">Edit</Button>
         </li>
       </div>
       <div v-else-if="isEditing">
         <li v-for="(todo, index) in todoList" :key="index">
-          <span class="msg" v-if="isEditing && index">
-            {{ todo }}
-          </span>
-          <input class="edit" type="text" v-model="editText" v-else />
+          <input
+            class="edit"
+            type="text"
+            v-if="selectIndex === index"
+            v-model="editText"
+          />
           <Button class="btn" @buttonAll="deleteList(index)">Hapus</Button>
           <Button class="btn" @buttonAll="updateList()">Edit</Button>
         </li>
@@ -48,6 +52,9 @@ export default {
       if (this.myText != "") this.todoList.push(this.myText);
       this.myText = "";
     },
+    page() {
+      this.$router.push("/deskripsi");
+    },
     editList(index, todo) {
       this.isEditing = true;
       this.selectIndex = index;
@@ -55,7 +62,6 @@ export default {
     },
     deleteList(index) {
       this.todoList.splice(index, 1);
-      //   return this.todoList.filter((item) => item != index);
     },
     updateList() {
       this.todoList.splice(this.selectIndex, 1, this.editText);
@@ -65,6 +71,9 @@ export default {
 };
 </script>
 <style>
+.msg {
+  text-decoration: none;
+}
 .btn {
   margin: 0 12px;
 }
