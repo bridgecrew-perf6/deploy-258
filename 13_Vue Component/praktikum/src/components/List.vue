@@ -2,19 +2,17 @@
   <div class="myList">
     <h2>Todolist</h2>
     <ol>
-      <div v-if="!isEditing">
-        <li v-for="(todo, index) in todoList" :key="index">
-          <router-link class="msg" to="/deskripsi">
-            <span>
-              {{ todo }}
-            </span>
-          </router-link>
+      <div v-if="!isTrue">
+        <li v-for="(todo, index) in listFromStore" :key="index">
+          <span @click="page(todo, index)">
+            {{ todo }}
+          </span>
           <Button class="btn" @buttonAll="deleteList(index)">Hapus</Button>
           <Button class="btn" @buttonAll="editList(index, todo)">Edit</Button>
         </li>
       </div>
-      <div v-else-if="isEditing">
-        <li v-for="(todo, index) in todoList" :key="index">
+      <div v-else-if="isTrue">
+        <li v-for="(todo, index) in listFromStore" :key="index">
           <input
             class="edit"
             type="text"
@@ -27,8 +25,9 @@
       </div>
     </ol>
     <input class="inputText" type="text" v-model="myText" />
-    <Button @buttonAll="addList">Tambahkan</Button>
-    <p v-if="todoList.length > 3">Hebat</p>
+    <!-- <button @click="addText">Tambahkan</button> -->
+    <Button @buttonAll="addText">Tambahkan</Button>
+    <p v-if="listFromStore.length > 3">Hebat</p>
   </div>
 </template>
 <script>
@@ -42,30 +41,40 @@ export default {
     return {
       selectIndex: null,
       editText: "",
-      myText: "",
-      todoList: [],
-      isEditing: false,
     };
   },
+  computed: {
+    isTrue() {
+      return this.$store.state.helper.isEdited;
+    },
+    listFromStore() {
+      return this.$store.state.helper.myList;
+    },
+    textFromStore() {
+      return this.$store.state.helper.myText;
+    },
+  },
   methods: {
-    addList() {
-      if (this.myText != "") this.todoList.push(this.myText);
+    addText() {
+      if (this.myText != "") {
+        this.$store.commit("helper/setList", this.myText);
+      }
       this.myText = "";
     },
-    page() {
-      this.$router.push("/deskripsi");
+    page(todo) {
+      this.$router.push({ path: `/deskripsi/${todo}` });
     },
     editList(index, todo) {
-      this.isEditing = true;
+      this.$store.commit("helper/setEdit", true);
       this.selectIndex = index;
       this.editText = todo;
     },
     deleteList(index) {
-      this.todoList.splice(index, 1);
+      this.listFromStore.splice(index, 1);
     },
     updateList() {
-      this.todoList.splice(this.selectIndex, 1, this.editText);
-      this.isEditing = false;
+      this.listFromStore.splice(this.selectIndex, 1, this.editText);
+      this.$store.commit("helper/setEdit", false);
     },
   },
 };

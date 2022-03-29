@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>{{ angkaDariStore }}</p>
     <input type="text" v-model="ubahText" />
     <Button @buttonAll="updateDeskripsi">Edit Deskripsi</Button>
   </div>
@@ -18,15 +17,15 @@ export default {
 
   methods: {
     updateDeskripsi() {
-      this.$store.commit("setDeskripsi", this.ubahText);
-      // this.$store.commit("setDeskripsi", this.ubahText);
+      this.$store.commit("helper/setDeskripsi", this.ubahText);
       this.ubahText = "";
+      this.$store.commit("helper/setEdit", false);
       this.$router.go(-1);
     },
   },
   computed: {
     angkaDariStore() {
-      return this.$store.state.deskripsi;
+      return this.$store.state.helper.deskripsi;
     },
   },
   setup() {},

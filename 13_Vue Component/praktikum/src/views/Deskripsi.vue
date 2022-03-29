@@ -4,18 +4,20 @@
       <button
         @click="
           () => {
-            this.$router.push('/');
+            this.$router.go(-1);
           }
         "
       >
         kembali
       </button>
     </div>
-    <div v-if="!isEdited">
+    <div v-if="!isTrue">
+      <h1>{{ id }}</h1>
       <p>{{ angkaDariStore }}</p>
-      <button @click="redirectTo('deskripsi/ubah')">Ubah Deskripsi</button>
+      <button @click="redirectTo(id, angkaDariStore)">Ubah Deskripsi</button>
     </div>
     <div v-else>
+      <h1>{{ id }}</h1>
       <router-view />
     </div>
   </div>
@@ -25,23 +27,29 @@ export default {
   name: "DeskripsiPage",
   data() {
     return {
-      ubahText: "Belum ada deskripsi nih!",
-      isEdited: false,
+      ubahText: "",
     };
   },
   methods: {
-    editDeskripsi(text) {
-      this.isEdited = true;
+    // editDeskripsi(text) {
+    //   this.isEdited = true;
+    //   this.ubahText = text;
+    // },
+    redirectTo(todo, text) {
+      this.$router.push({ path: `/deskripsi/${todo}/ubah` });
       this.ubahText = text;
-    },
-    redirectTo(path) {
-      this.$router.push(path);
-      this.isEdited = true;
+      this.$store.commit("helper/setEdit", true);
     },
   },
   computed: {
+    isTrue() {
+      return this.$store.state.helper.isEdited;
+    },
     angkaDariStore() {
-      return this.$store.state.deskripsi;
+      return this.$store.state.helper.deskripsi;
+    },
+    id() {
+      return this.$route.params.id;
     },
   },
   setup() {},

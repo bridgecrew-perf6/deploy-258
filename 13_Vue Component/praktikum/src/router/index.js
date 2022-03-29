@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Deskripsi from "@/views/Deskripsi.vue";
 import List from "@/components/List.vue";
 import UbahDeskripsi from "@/views/UbahDeskripsi.vue";
-// import Default from "@/views/Default.vue";
 
 Vue.use(VueRouter);
 
@@ -14,7 +13,7 @@ const routes = [
     component: List,
   },
   {
-    path: "/deskripsi",
+    path: "/deskripsi/:id",
     name: "Deskripsi",
     component: Deskripsi,
     children: [

@@ -1,15 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import helper from "@/store/module.js";
+import createPresistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
+const presistedDataState = createPresistedState({
+  paths: ["helper"],
+});
 
 export default new Vuex.Store({
-  state: {
-    deskripsi: "Belum ada deskripsi nih",
-  },
-  mutations: {
-    setDeskripsi(state, param) {
-      state.deskripsi = param;
+  plugins: [presistedDataState],
+  modules: {
+    helper: {
+      namespaced: true,
+      ...helper,
     },
   },
 });
