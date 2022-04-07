@@ -1,29 +1,92 @@
 <template>
   <div id="app">
-    <h1>Berita Terkini</h1>
-    <ul class="list">
-      <li>
-        <a href="">
-          <div class="body">
-            <div
-              class="blockNews"
-              v-for="news in listNews"
-              :key="news.id"
-              @click="goToDeskripsi(news.title)"
+    <v-row>
+      <v-col cols="2">
+        <div class="light-blue">
+          <v-card>
+            <v-navigation-drawer
+              :permanent="$vuetify.breakpoint.mdAndUp"
+              app
+              clipped
+              class="light-blue white--text"
             >
-              <img :src="news.urlToImage" alt="Image" />
-              <div class="text">
-                <div class="author">{{ news.author }}</div>
-                <div class="title">
-                  <h3>{{ news.title }}</h3>
-                </div>
-                <div class="date">{{ news.publishedAt }}</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
+              <v-list dense nav>
+                <v-list-item v-for="source in getSource" :key="source.id" link>
+                  <v-list-item-content
+                    class="white--text"
+                    @click="getByCategory(source.id)"
+                  >
+                    <v-list-item-title> {{ source.name }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-navigation-drawer>
+          </v-card>
+        </div>
+      </v-col>
+      <v-col cols="8">
+        <h1>Berita Terkini</h1>
+        <v-layout v-for="news in listNews" :key="news.id">
+          <v-card class="align-center justify-center my-6">
+            <v-card hover>
+              <v-img heigth="350px" :src="news.urlToImage" alt="image"></v-img>
+            </v-card>
+            <v-container fill-heigth>
+              <v-layout my-4>
+                <span class="headline">{{ news.title }}</span>
+              </v-layout>
+              <v-card-text>{{ news.description }}</v-card-text>
+              <v-card-actions>
+                <v-container class="py-0">
+                  <v-row dense>
+                    <v-col cols="4" md="4" sm="12">
+                      <v-chip small color="secondary">
+                        {{ news.source.name }}
+                      </v-chip>
+                    </v-col>
+                    <v-col cols="6" md="6" sm="12">
+                      <v-btn icon class="red--text">
+                        <v-icon small>mdi-reddit</v-icon>
+                      </v-btn>
+                      <v-btn icon class="light-blue--text">
+                        <v-icon>mdi-twitter</v-icon>
+                      </v-btn>
+                      <v-btn icon class="blue--text">
+                        <v-icon>mdi-facebook</v-icon>
+                      </v-btn>
+                      <v-btn icon class="red--text">
+                        <v-icon>mdi-google-plus</v-icon>
+                      </v-btn>
+                      <v-btn icon class="blue--text">
+                        <v-icon>mdi-linkedin</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <!-- <v-col cols="2"> </v-col> -->
+                    <v-col cols="2" md="2" sm="12">
+                      <v-btn
+                        small
+                        replace
+                        color="info"
+                        class="align-text-right"
+                      >
+                        <a :href="news.url" target="_blank" class="white--text">
+                          Read More</a
+                        >
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+                <!-- 
+                <v-spacer></v-spacer>
+
+                <v-spacer></v-spacer> -->
+              </v-card-actions>
+            </v-container>
+          </v-card>
+        </v-layout>
+      </v-col>
+      <v-col cols="2"></v-col>
+    </v-row>
   </div>
 </template>
 <script>
@@ -37,6 +100,9 @@ export default {
     listNews() {
       return this.$store.state.news.berita;
     },
+    getSource() {
+      return this.$store.state.news.source;
+    },
   },
   methods: {
     goToDeskripsi(title) {
@@ -45,9 +111,16 @@ export default {
     fetchNews() {
       this.$store.dispatch("news/fetchNews");
     },
+    getSources() {
+      this.$store.dispatch("news/getSource");
+    },
+    getByCategory(source) {
+      this.$store.dispatch("news/getBySource", source);
+    },
   },
   mounted() {
     this.fetchNews();
+    this.getSources();
   },
 };
 </script>
@@ -56,13 +129,12 @@ export default {
 .text {
   margin-left: 10px;
 }
-img {
-  width: 300px;
-  height: 100px;
-}
+/* img {
+  max-width: 600px;
+  max-height: 200px;
+} */
 a {
   text-decoration: none;
-  color: black;
 }
 h1 {
   text-align: center;
@@ -93,7 +165,7 @@ h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 @media screen and (max-width: 1200px) {
   .blockNews {
